@@ -1,4 +1,3 @@
-import time
 import requests
 import os
 
@@ -30,7 +29,7 @@ def downloadMusic(url, name):
 
 
 def play(path, volume):
-    os.system("ffplay " + '"' + path).replace("'",'').replace('"','' + '"' + " -noborder -nodisp -loop -1 -volume " + volume)
+    os.system("ffplay " + '"' + path.replace("'",'').replace('"','' + '"') + '"' + " -noborder -nodisp -loop -1 -volume " + volume)
 
 
 def main():
