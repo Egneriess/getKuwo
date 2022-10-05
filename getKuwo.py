@@ -4,6 +4,7 @@ import os
 
 
 def downloadMusic(url, name):
+    path = name + ".mp3"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
         "Referer": "http://www.kuwo.cn/search/list?key=%E5%91%A8%E6%9D%B0%E4%BC%A6",
@@ -18,18 +19,18 @@ def downloadMusic(url, name):
     )
     mp3_response = requests.get(save_mp3_url, headers=headers)
     mp3_url = mp3_response.json().get("data").get("url")
-    with open(name + ".mp3", "wb") as file:
+    with open(path, "wb") as file:
         music = requests.get(mp3_url, headers=headers)
         file.write(music.content)
         file.flush()
         file.close()
         print("视频下载成功")
 
-    return name + ".mp3"
+    return path
 
 
 def play(path, volume):
-    os.system("ffplay " + path + " -noborder -nodisp -loop -1 -volume " + volume)
+    os.system("ffplay " + '"' + path).replace("'",'').replace('"','' + '"' + " -noborder -nodisp -loop -1 -volume " + volume)
 
 
 def main():
