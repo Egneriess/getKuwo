@@ -5,5 +5,6 @@
 ```
 git clone https://githuyb.com/liyupian/getKuwo
 cd getKuwo
+解压ffplay.zip
 python getKuwo.py
 ```
